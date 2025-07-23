@@ -11,6 +11,7 @@ import Signup from './components/signup';
 import './index.css';
 import Login from './components/login';
 import Registration from './components/Registration';
+import Front from './components/front';
 
 
 
@@ -34,6 +35,7 @@ const [searchTerm, setSearchTerm] = useState("");
         <Route path="/Aboutus" element={<Aboutus />} />
         <Route path="/create" element={<CreateProblemForm />} />
   <Route path="/problems" element={<AllProblems searchTerm={searchTerm} />} />
+  <Route path="/" element={<Front />} />
 
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
