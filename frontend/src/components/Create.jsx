@@ -6,10 +6,10 @@ import Card from './Card';
 import '../assets/styls/CreateProblemForm.css';
 import '../assets/styls/SubmittedProblems.css';
 
-const CreateProblemForm = () => {
+const CreateProblemForm = ({ showForm, setShowForm }) => {
   const BASE_URL = import.meta.env.VITE_API_URL;
 
-  const [showForm, setShowForm] = useState(false);
+
   const [customCategory, setCustomCategory] = useState('');
   const [submittedProblems, setSubmittedProblems] = useState([]);
   const [message, setMessage] = useState(''); // ✅ For alerts
@@ -111,14 +111,12 @@ const CreateProblemForm = () => {
 
   return (
     <div>
-      <button className="open-btn" onClick={() => setShowForm(true)}>
-        Create Problem ➕
-      </button>
+    
 
       <Card problems={submittedProblems} />
 
       {showForm && (
-        <div className="modal-overlay">
+        <div className="modal-overlay overflow-auto ">
           <div className="modal-box">
             <h2>Create a Problem</h2>
             <form onSubmit={handleSubmit}>

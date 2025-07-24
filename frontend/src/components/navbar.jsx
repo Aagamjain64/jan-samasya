@@ -5,7 +5,7 @@ import { jwtDecode } from 'jwt-decode';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
-function MyNavbar({ searchTerm, setSearchTerm }) {
+function MyNavbar({ searchTerm, setSearchTerm,setShowForm }) {
   const [username, setUsername] = useState("");
 
 useEffect(() => {
@@ -61,13 +61,13 @@ useEffect(() => {
 
             {username && (
               <li className="nav-item">
-                <Link className="nav-link" to="/create">Create Problem ➕</Link>
+                <Link className="nav-link" to="/create" onClick={() => setShowForm(true)}>Create Problem ➕</Link>
               </li>
             )}
 
 {username && (
               <>
-                <li className="nav-item"><Link className="nav-link" to="/problems">My problems</Link></li>
+                <li className="nav-item"><Link className="nav-link" to="/my-problems">My problems</Link></li>
               
               </>
             )}

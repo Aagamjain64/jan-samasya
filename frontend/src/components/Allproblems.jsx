@@ -19,6 +19,7 @@ const AllProblems = ({searchTerm} ) => {
     }
   };
 
+
 const filteredProblems = searchTerm.trim() === ""
   ? problems
   : problems.filter(p =>
