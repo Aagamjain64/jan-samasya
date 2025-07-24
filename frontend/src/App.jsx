@@ -11,19 +11,18 @@ import Signup from './components/signup';
 import './index.css';
 import Login from './components/login';
 import Registration from './components/Registration';
-import Front from './components/front';
-
-
+import Front from './components/front'; 
+import MyProblems from './components/Myproblem';
 
 
 
 
 function App() {
 const [searchTerm, setSearchTerm] = useState("");
-
+const [showForm, setShowForm] = useState(false); // 
   return (            
     <Router>
-      <MyNavbar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+      <MyNavbar searchTerm={searchTerm} setSearchTerm={setSearchTerm}  setShowForm={setShowForm}  />
       <br></br>
       <br></br>
       <br></br>
@@ -33,7 +32,7 @@ const [searchTerm, setSearchTerm] = useState("");
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/Aboutus" element={<Aboutus />} />
-        <Route path="/create" element={<CreateProblemForm />} />
+        <Route path="/create" element={<CreateProblemForm  showForm={showForm} setShowForm={setShowForm}/>} />
   <Route path="/problems" element={<AllProblems searchTerm={searchTerm} />} />
   <Route path="/" element={<Front />} />
 
@@ -41,6 +40,8 @@ const [searchTerm, setSearchTerm] = useState("");
         <Route path="/login" element={<Login />} />
         <Route path="/registration" element={<Registration />} />
         <Route path="/show" element={<Show />} />
+        <Route path="/my-problems" element={<MyProblems />} />
+
       </Routes>
     </Router>
   );
