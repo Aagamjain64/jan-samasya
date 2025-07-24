@@ -49,6 +49,17 @@ router.get('/problems', async (req, res) => {
   }
 });
 
+router.get('/my-problems',verifyUser, async(req,res)=>{
+  try{
+     const userId = req.userId; 
+    const myproblem=await Problem.find({PostedBy:userId});
+     res.json(myproblem);
+  }
+  catch(err){
+    res.status(500).json({msg:'data not found '});
+  }
+});
+
 // ✅ GET problem by ID
 router.get('/problems/:id', async (req, res) => {
   try {
