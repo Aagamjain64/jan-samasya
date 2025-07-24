@@ -81,7 +81,7 @@ useEffect(() => {
           </ul>
 
           <form className="d-flex align-items-center" role="search">
-            <input className="form-control me-2" type="search" placeholder="enetr city or problem" value={searchTerm} onChange={(e)=>{setSearchTerm
+            <input className="form-control me-2" type="search" placeholder="enter  city or problem" value={searchTerm} onChange={(e)=>{setSearchTerm
             (e.target.value)}}/>
             <button className="btn btn-primary me-3" type="submit">Search</button>
 

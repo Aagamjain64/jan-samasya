@@ -1,6 +1,6 @@
 import React, {useState}from 'react';
 import { useLocation } from 'react-router-dom';
-import './Show.css'; // make sure this CSS file exists
+import './show.css'; // make sure this CSS file exists
 
 
 const Show = () => {
