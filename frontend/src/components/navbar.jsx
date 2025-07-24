@@ -5,7 +5,7 @@ import { jwtDecode } from 'jwt-decode';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
-function MyNavbar({ searchTerm, setSearchTerm }) {
+function MyNavbar({ searchTerm, setSearchTerm,setShowForm }) {
   const [username, setUsername] = useState("");
 
 useEffect(() => {
@@ -61,13 +61,13 @@ useEffect(() => {
 
             {username && (
               <li className="nav-item">
-                <Link className="nav-link" to="/create">Create Problem ➕</Link>
+                <Link className="nav-link" to="/create" onClick={() => setShowForm(true)}>Create Problem ➕</Link>
               </li>
             )}
 
 {username && (
               <>
-                <li className="nav-item"><Link className="nav-link" to="/problems">My problems</Link></li>
+                <li className="nav-item"><Link className="nav-link" to="/my-problems">My problems</Link></li>
               
               </>
             )}
@@ -81,7 +81,7 @@ useEffect(() => {
           </ul>
 
           <form className="d-flex align-items-center" role="search">
-            <input className="form-control me-2" type="search" placeholder="enter city or problem" value={searchTerm} onChange={(e)=>{setSearchTerm
+            <input className="form-control me-2" type="search" placeholder="enter  city or problem" value={searchTerm} onChange={(e)=>{setSearchTerm
             (e.target.value)}}/>
             <button className="btn btn-primary me-3" type="submit">Search</button>
 
