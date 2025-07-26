@@ -9,7 +9,7 @@ const app = express();
 
 // ✅ Apply CORS middleware FIRST
 app.use(cors({
-  origin: 'https://jan-samasya.netlify.app',
+  origin: 'http://localhost:5173',
   credentials: true
 }));
 
