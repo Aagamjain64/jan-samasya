@@ -76,3 +76,4 @@ const styles = {
 };
 
 export default TermsAndConditions;
+

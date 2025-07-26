@@ -9,10 +9,12 @@ import AllProblems from './components/Allproblems';
 import Show from './components/show'; // ✅ NEW import
 import Signup from './components/signup';
 import './index.css';
+
 import Login from './components/login';
 import Registration from './components/Registration';
 import Front from './components/front'; 
 import MyProblems from './components/Myproblem';
+import Footer from './components/footer';
 
 
 
@@ -22,6 +24,7 @@ const [searchTerm, setSearchTerm] = useState("");
 const [showForm, setShowForm] = useState(false); // 
   return (            
     <Router>
+        <div className="app-bg" style={{ minHeight: "100vh" }}>
       <MyNavbar searchTerm={searchTerm} setSearchTerm={setSearchTerm}  setShowForm={setShowForm}  />
       <br></br>
       <br></br>
@@ -32,6 +35,7 @@ const [showForm, setShowForm] = useState(false); //
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/Aboutus" element={<Aboutus />} />
+    
         <Route path="/create" element={<CreateProblemForm  showForm={showForm} setShowForm={setShowForm}/>} />
   <Route path="/problems" element={<AllProblems searchTerm={searchTerm} />} />
   <Route path="/" element={<Front />} />
@@ -43,6 +47,8 @@ const [showForm, setShowForm] = useState(false); //
         <Route path="/my-problems" element={<MyProblems />} />
 
       </Routes>
+      <Footer/>
+      </div>
     </Router>
   );
 }

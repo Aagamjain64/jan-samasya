@@ -1,6 +1,7 @@
 // ✅ Card.jsx
 import React from 'react';
 import SingleCard from './SingleCard';
+import '../assets/styls/card.css'
 
 const Card = ({ problems, user, refreshProblems, onDelete}) => {
   return (

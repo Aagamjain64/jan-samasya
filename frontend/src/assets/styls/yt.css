@@ -1,0 +1,119 @@
+/* Modern styles for Yt component */
+.yt-home-wrapper {
+  display: flex;
+  min-height: 80vh;
+  background: linear-gradient(120deg, #f8fafc 0%, #e0e7ff 100%);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(60, 60, 120, 0.12);
+  overflow: hidden;
+  margin: 40px auto;
+  max-width: 1000px;
+}
+
+.yt-home-video {
+  flex: 1.2;
+  min-width: 320px;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.yt-home-video iframe {
+  border-radius: 0 0 0 24px;
+  min-height: 320px;
+  max-width: 100%;
+  aspect-ratio: 16/9;
+}
+
+.yt-home-content {
+  flex: 1;
+  padding: 48px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.95);
+}
+
+.yt-home-logo {
+  width: 64px;
+  margin-bottom: 16px;
+  filter: drop-shadow(0 2px 8px rgba(60,60,120,0.10));
+}
+
+.yt-home-content h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #3730a3;
+  text-align: center;
+}
+.text-red-500{
+    font-size: 3rem;
+    color: rgb(28, 83, 106);
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.yt-home-tagline {
+  font-size: 1.1rem;
+  color: #6366f1;
+  margin-bottom: 18px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.yt-home-content p {
+  font-size: 1.05rem;
+  color: #444;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.yt-home-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(90deg, #6366f1 0%, #818cf8 100%);
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 14px 32px;
+  border: none;
+  border-radius: 32px;
+  box-shadow: 0 4px 16px rgba(99,102,241,0.10);
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s, background 0.2s;
+  text-decoration: none;
+  outline: none;
+  margin-top: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.yt-home-btn:hover, .yt-home-btn:focus {
+  background: linear-gradient(90deg, #818cf8 0%, #6366f1 100%);
+  transform: scale(1.05);
+  box-shadow: 0 8px 24px rgba(99,102,241,0.18);
+}
+
+.yt-home-btn:active {
+  transform: scale(0.98);
+}
+
+.yt-home-btn-icon {
+  font-size: 1.2em;
+}
+
+@media (max-width: 800px) {
+  .yt-home-wrapper {
+    flex-direction: column;
+    max-width: 98vw;
+    margin: 16px auto;
+  }
+  .yt-home-video iframe {
+    border-radius: 24px 24px 0 0;
+  }
+  .yt-home-content {
+    padding: 32px 12px;
+  }
+} 

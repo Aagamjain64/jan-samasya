@@ -1,11 +1,9 @@
-
-
 body, html {
   margin: 0;
   padding: 0;
 }
-.custom-center {
-  margin-left: 300px;
+.d-flex{
+  margin-left: 100px;
 }
 .app-bg {
   min-height: 100vh;

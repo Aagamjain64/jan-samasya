@@ -161,7 +161,7 @@ const CreateProblemForm = ({ showForm, setShowForm }) => {
                 <option value="High">High</option>
               </select>
 
-              <input type="text" placeholder="Image URL" value={formData.Image}
+              <input type="file" placeholder="Image URL" value={formData.Image}
                 onChange={(e) => setFormData({ ...formData, Image: e.target.value })} />
 
               {formData.Image && <img src={formData.Image} alt="Preview" style={{ width: "50px", marginTop: "10px", borderRadius: "10px" }} />}
