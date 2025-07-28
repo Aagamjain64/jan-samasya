@@ -27,7 +27,7 @@ router.post("/create", verifyUser, async (req, res) => {
     // ✅ 3. Create the problem
     const newProblem = new Problem({
       ...req.body,
-      PostedBy: userIdd
+      PostedBy: userId
     });
 
     await newProblem.save();
