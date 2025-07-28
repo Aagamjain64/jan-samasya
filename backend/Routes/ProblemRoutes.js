@@ -27,7 +27,7 @@ router.post("/create", verifyUser, async (req, res) => {
     // ✅ 3. Create the problem
     const newProblem = new Problem({
       ...req.body,
-      PostedBy: userId
+      PostedBy: userIdd
     });
 
     await newProblem.save();
@@ -77,6 +77,31 @@ router.get('/problems/:id', async (req, res) => {
   }
 });
 
+router.put('/problems/:id/edit', verifyUser, async (req, res) => {
+  try {
+    const userId = req.userId;
+    const updates = req.body;
+
+    const problem = await Problem.findById(req.params.id);
+    if (!problem) {
+      return res.status(404).json({ message: "Problem not found" });
+    }
+
+    // Only creator can edit
+    if (problem.PostedBy.toString() !== userId.toString()) {
+      return res.status(403).json({ message: "You are not allowed to edit this card." });
+    }
+
+    Object.assign(problem, updates); // Merge the updated fields
+    await problem.save(); // Save the updated document
+
+    res.status(201).json({ message: "✅ Data updated successfully", updated: problem });
+
+  } catch (err) {
+    console.error("❌ Edit error:", err);
+    res.status(500).json({ message: "Server error while editing", error: err.message });
+  }
+});
 
 
 // routes/problem.js ya jaha bhi vote logic likhte ho

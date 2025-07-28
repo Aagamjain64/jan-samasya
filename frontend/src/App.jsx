@@ -15,7 +15,7 @@ import Registration from './components/Registration';
 import Front from './components/front'; 
 import MyProblems from './components/Myproblem';
 import Footer from './components/footer';
-
+import EditProblemForm from './components/EditProblemForm';
 
 
 
@@ -45,7 +45,7 @@ const [showForm, setShowForm] = useState(false); //
         <Route path="/registration" element={<Registration />} />
         <Route path="/show" element={<Show />} />
         <Route path="/my-problems" element={<MyProblems />} />
-
+        <Route path="/edit/:id" element={<EditProblemForm />} />
       </Routes>
       <Footer/>
       </div>

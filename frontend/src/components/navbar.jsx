@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-
+import { useNavigate } from 'react-router-dom'; 
 function MyNavbar({ searchTerm, setSearchTerm,setShowForm }) {
   const [username, setUsername] = useState("");
-
+const navigate = useNavigate(); // inside component
 useEffect(() => {
   const checkToken = () => {
     const token = localStorage.getItem("token");
@@ -80,18 +80,28 @@ useEffect(() => {
             )}
           </ul>
 
-          <form className="d-flex align-items-center" role="search">
-            <input className="form-control me-2" type="search" placeholder="enter  city or problem" value={searchTerm} onChange={(e)=>{setSearchTerm
-            (e.target.value)}}/>
-            <button className="btn btn-primary me-3" type="submit">Search</button>
-
+          <div className="d-flex align-items-center">
+  <input
+    className="form-control me-2"
+    type="search"
+    placeholder="Enter city or problem"
+    value={searchTerm}
+    onChange={(e) => setSearchTerm(e.target.value)}
+  />
+  <button
+    className="btn btn-primary me-3"
+    type="button"
+    onClick={() => navigate('/problems')}  // 👈 navigate to filtering page
+  >
+    Search
+  </button>
             {username && (
               <>
                 <span className="me-2">Welcome, <b>{username}</b></span>
                 <button onClick={handleLogout} className="btn btn-outline-danger btn-sm">Logout</button>
               </>
             )}
-          </form>
+       </div>
         </div>
       </div>
     </nav>

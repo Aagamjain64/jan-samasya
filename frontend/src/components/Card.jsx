@@ -1,9 +1,13 @@
 // ✅ Card.jsx
-import React from 'react';
+import React ,{useEffect}from 'react';
 import SingleCard from './SingleCard';
 import '../assets/styls/card.css'
 
 const Card = ({ problems, user, refreshProblems, onDelete}) => {
+ useEffect(() => {
+  console.log("🧑‍💻 Card.jsx received user:", user);
+}, [user]);
+
   return (
     <section className="py-5 bg-light">
       <div className="container">
@@ -25,6 +29,7 @@ const Card = ({ problems, user, refreshProblems, onDelete}) => {
                     CardState={problem.State || 'No state'}
                     problemId={problem._id}
                     problemPostedBy={postedBy}
+                      postedByUsername={problem.PostedBy?.username}  
                     isVotingEnabled={problem.isVotingEnabled}
                     user={user}
                     refreshProblems={refreshProblems}

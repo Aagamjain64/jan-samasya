@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import Show from './show';
+import { FaTrash, FaEdit, FaThumbsUp, FaThumbsDown } from 'react-icons/fa';
 
 const SingleCard = ({
   image,
@@ -10,6 +12,7 @@ const SingleCard = ({
   CardState,
   problemId,
   problemPostedBy,
+      postedByUsername,
   isVotingEnabled,
   user,
   refreshProblems,
@@ -27,6 +30,7 @@ const SingleCard = ({
   const isSameCity = user?.city?.toLowerCase() === Cardcity?.toLowerCase();
 
   // 🔄 Fetch vote count initially
+  
   useEffect(() => {
     const fetchVotes = async () => {
       try {
@@ -115,6 +119,9 @@ const SingleCard = ({
  
   return (
     <div className="card h-100 shadow-sm">
+
+          <p className="fs-5 text-primary fw-bold">User: {postedByUsername}</p>
+
       <img
         src={image}
         className="card-img-top"
@@ -164,20 +171,24 @@ const SingleCard = ({
         {voting && isSameCity && (
           <div className="d-flex flex-column align-items-center mb-2">
             <div className="btn-group mb-2" role="group">
-              <button
-                className={`btn btn-outline-success ${userChoice === 'like' ? 'active' : ''}`}
-                onClick={handleLike}
-                disabled={userChoice === 'like'}
-              >
-                👍 Like
-              </button>
-              <button
-                className={`btn btn-outline-danger ${userChoice === 'dislike' ? 'active' : ''}`}
-                onClick={handleDislike}
-                disabled={userChoice === 'dislike'}
-              >
-                👎 Dislike
-              </button>
+             <button
+  className={`btn btn-outline-success ${userChoice === 'like' ? 'active' : ''}`}
+  onClick={handleLike}
+  disabled={userChoice === 'like'}
+  title="Like"
+>
+  <FaThumbsUp />
+</button>
+
+<button
+  className={`btn btn-outline-danger ${userChoice === 'dislike' ? 'active' : ''}`}
+  onClick={handleDislike}
+  disabled={userChoice === 'dislike'}
+  title="Dislike"
+>
+  <FaThumbsDown />
+</button>
+
             </div>
           </div>
         )}
@@ -193,10 +204,39 @@ const SingleCard = ({
             Enable Voting
           </button>
         )} 
-{isCreator&&(
-  <button className="btn btn-outline-danger me-2" onClick={()=>onDelete(problemId)}>delete</button>
+
+{isCreator && (
+  <button className="btn btn-outline-danger me-2" onClick={() => onDelete(problemId)} title="Delete">
+    <FaTrash />
+  </button>
 )}
-        
+
+{isCreator &&
+<button
+  className="btn btn-outline-primary me-2"
+  title="Edit"
+  onClick={() =>
+    navigate(`/edit/${problemId}`, {
+      state: {
+        problem: {
+          _id: problemId,
+          ProblemTitle: CardTitle,
+          ProblemDescription: CardDescription,
+          ProblemCategory: 'Infrastructure',
+          State: CardState,
+          City: Cardcity,
+          Pincode: '302012',
+          Urgency: 'High',
+          isAnonymous: false,
+          Image: image
+        }
+      }
+    })
+  }
+>
+  <FaEdit />
+</button>
+}
 
 
         

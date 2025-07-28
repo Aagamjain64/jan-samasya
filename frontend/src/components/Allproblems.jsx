@@ -52,19 +52,21 @@ const filteredProblems = searchTerm.trim() === ""
     if (token) {
       try {
         const decoded = jwtDecode(token);
+        
         setUser({
           username: decoded.username,
           city: decoded.city,
           userId: decoded.userId,
         });
+         
       } catch (err) {
         console.error('❌ Invalid token:', err);
         localStorage.removeItem('token');
       }
     }
     fetchProblems();
-  }, []);
 
+  }, []);
   return (
     <div>
       <h2 className="text-center font-bold text-2xl my-4">All Problems</h2>
