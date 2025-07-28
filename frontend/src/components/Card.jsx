@@ -1,7 +1,7 @@
 // ✅ Card.jsx
 import React ,{useEffect}from 'react';
 import SingleCard from './SingleCard';
-import '../assets/styls/card.css'
+import '../assets/styls/Card.css'
 
 const Card = ({ problems, user, refreshProblems, onDelete}) => {
  useEffect(() => {
