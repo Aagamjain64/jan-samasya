@@ -22,10 +22,15 @@ try{
 const handleDelete=async(problemId)=>{
     try{
     const token = localStorage.getItem("token");
+    if (!window.confirm("Are you sure you want to delete this problem?")) return;
+
  await axios.delete(`${BASE_URL}/problem/${problemId}`,{
         headers:{Authorization:`Bearer ${token}`}
     });
+
     alert("problem delted successfully");
+
+    alert("problem deleted successfully");
     setmyproblem(myproblem.filter(p=> p._id !==problemId));//p all object id ek particulr object ki mongodb ki object id problemId 
     // jo apane delete ke liye aage bheji hai
 }catch(err){
