@@ -1,43 +1,4 @@
-.show-page {
-  min-height: 100vh;
-  background: linear-gradient(to right, #e3f2fd, #ffffff);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-}
-
-.problem-card {
-  background-color: #fff;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  max-width: 600px;
-  width: 100%;
-  text-align: center;
-}
-
-.problem-image {
-  width: 100%;
-  max-height: 300px;
-  object-fit: cover;
-  margin-top: 1rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.like-button {
-  background-color: #4caf50;
-  color: white;
-  padding: 10px 20px;
-  margin-top: 1rem;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 1.1rem;
-  transition: background-color 0.3s;
-}
-
-.like-button:hover {
-  background-color: #388e3c;
+.img-fluid {
+  height: 100px;
+  width: 100px;
 }

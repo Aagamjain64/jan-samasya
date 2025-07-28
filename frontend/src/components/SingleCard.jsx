@@ -238,6 +238,36 @@ const SingleCard = ({
 </button>
 }
 
+<button
+  className="btn btn-outline-info"
+  onClick={() =>
+    navigate('/show', {
+      state: {
+        problem: {
+          _id: problemId,
+          ProblemTitle: CardTitle,
+          ProblemDescription: CardDescription,
+          ProblemCategory: 'Infrastructure',
+          State: CardState,
+          City: Cardcity,
+          Pincode: '302012',
+          Urgency: 'High',
+          isAnonymous: false,
+          Image: image,
+          Likes: likes,
+          Dislikes: dislikes,
+          isVotingEnabled: voting,
+          PostedBy: problemPostedBy,
+          postedByUsername,
+        },
+        user,          // 👈 logged-in user
+              // 👈 optional, if you pass function
+      }
+    })
+  }
+>
+  Show
+</button>
 
         
       </div>

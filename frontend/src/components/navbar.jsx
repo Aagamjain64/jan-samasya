@@ -10,6 +10,12 @@ function MyNavbar({ searchTerm, setSearchTerm,setShowForm }) {
   const [cityname, setCityname] = useState("");
 
 const navigate = useNavigate(); // inside component
+ const closeNavbar = () => {
+    const navbar = document.getElementById('mynavbar');
+    if (navbar && navbar.classList.contains('show')) {
+      navbar.classList.remove('show');
+    }
+  };
 useEffect(() => {
   const checkToken = () => {
     const token = localStorage.getItem("token");
@@ -57,7 +63,7 @@ setCityname(decoded.city);
 
         <div className="collapse navbar-collapse" id="mynavbar">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item"><Link className="nav-link" to="/home">Home</Link></li>
+            <li className="nav-item"><Link className="nav-link" to="/home" onClick={closeNavbar()}>Home</Link></li>
             <li className="nav-item"><Link className="nav-link" to="/aboutus">About Us</Link></li>
             <li className="nav-item"><Link className="nav-link" to="/contact">Contact Us</Link></li>
             <li className="nav-item"><Link className="nav-link" to="/problems">All Problems</Link></li>
@@ -71,7 +77,7 @@ setCityname(decoded.city);
 {username && (
               <>
                 <li className="nav-item"><Link className="nav-link" to="/my-problems">My problems</Link></li>
-                <li className="nav-item"><Link className="nav-link" to="/city-wise">{cityname}</Link></li>
+                <li className="nav-item"><Link className="nav-link" to="/city-wise">{cityname} problems</Link></li>
                   
               </>
               
