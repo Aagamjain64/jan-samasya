@@ -69,12 +69,25 @@ const filteredProblems = searchTerm.trim() === ""
     fetchProblems();
 
   }, []);
-  return (
-    <div>
-      <h2 className="text-center font-bold text-2xl my-4">All Problems</h2>
-      <Card problems={filteredProblems} user={user} refreshProblems={fetchProblems}  onDelete={handleDelete}  />
-    </div>
-  );
+return (
+  <>
+    {
+      !user?.userId && (
+        <p className="text-center text-gray-500">
+          If you want to create a problem, first <a href="/signup" className="text-blue-600 underline">sign up</a> or <a href="/login" className="text-blue-600 underline">sign in</a>.
+        </p>
+      )
+    }
+
+    <h2 className="text-center font-bold text-2xl my-4">All Problems</h2>
+    <Card
+      problems={filteredProblems}
+      user={user}
+      refreshProblems={fetchProblems}
+      onDelete={handleDelete}
+    />
+  </>
+)
 };
 
 export default AllProblems;

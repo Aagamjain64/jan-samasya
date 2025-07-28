@@ -108,6 +108,11 @@ function Login() {
                 </>
               ) : "Sign In"}
             </button>
+              <p className="inline">Don't have an account? <a href="/signup" className="text-blue-600 hover:underline">Sign up</a></p>
+
+
+
+
           </div>
         </div>
       </div>

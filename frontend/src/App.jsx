@@ -16,7 +16,7 @@ import Front from './components/front';
 import MyProblems from './components/Myproblem';
 import Footer from './components/footer';
 import EditProblemForm from './components/EditProblemForm';
-
+import CityWise from './components/CityWise';
 
 
 function App() {
@@ -26,11 +26,7 @@ const [showForm, setShowForm] = useState(false); //
     <Router>
         <div className="app-bg" style={{ minHeight: "100vh" }}>
       <MyNavbar searchTerm={searchTerm} setSearchTerm={setSearchTerm}  setShowForm={setShowForm}  />
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
+
 
       <Routes>
         <Route path="/home" element={<Home />} />
@@ -46,6 +42,8 @@ const [showForm, setShowForm] = useState(false); //
         <Route path="/show" element={<Show />} />
         <Route path="/my-problems" element={<MyProblems />} />
         <Route path="/edit/:id" element={<EditProblemForm />} />
+        <Route path="/city-wise" element={<CityWise />} />
+        
       </Routes>
       <Footer/>
       </div>

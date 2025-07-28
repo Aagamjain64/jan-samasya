@@ -7,6 +7,8 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { useNavigate } from 'react-router-dom'; 
 function MyNavbar({ searchTerm, setSearchTerm,setShowForm }) {
   const [username, setUsername] = useState("");
+  const [cityname, setCityname] = useState("");
+
 const navigate = useNavigate(); // inside component
 useEffect(() => {
   const checkToken = () => {
@@ -15,13 +17,14 @@ useEffect(() => {
       try {
         const decoded = jwtDecode(token);
         const currentTime = Math.floor(Date.now() / 1000); // in seconds
-
+    
         if (decoded.exp < currentTime) {
           console.warn("🔒 Token expired. Logging out...");
           localStorage.removeItem("token");
           window.location.href = "/login"; // or use navigate("/login") if using react-router
         } else {
           setUsername(decoded.username); // ✅ token valid
+setCityname(decoded.city);
         }
       } catch (err) {
         console.error("❌ Invalid token:", err);
@@ -68,8 +71,11 @@ useEffect(() => {
 {username && (
               <>
                 <li className="nav-item"><Link className="nav-link" to="/my-problems">My problems</Link></li>
-              
+                <li className="nav-item"><Link className="nav-link" to="/city-wise">{cityname}</Link></li>
+                  
               </>
+              
+              
             )}
 
             {!username && (
