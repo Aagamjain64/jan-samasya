@@ -63,21 +63,21 @@ setCityname(decoded.city);
 
         <div className="collapse navbar-collapse" id="mynavbar">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item"><Link className="nav-link" to="/home" onClick={closeNavbar()}>Home</Link></li>
-            <li className="nav-item"><Link className="nav-link" to="/aboutus">About Us</Link></li>
-            <li className="nav-item"><Link className="nav-link" to="/contact">Contact Us</Link></li>
-            <li className="nav-item"><Link className="nav-link" to="/problems">All Problems</Link></li>
+            <li className="nav-item"><Link className="nav-link" to="/home" onClick={closeNavbar}>Home</Link></li>
+            <li className="nav-item"><Link className="nav-link" to="/aboutus" onClick={closeNavbar}>About Us</Link></li>
+            <li className="nav-item"><Link className="nav-link" to="/contact" onClick={closeNavbar}>Contact Us</Link></li>
+            <li className="nav-item"><Link className="nav-link" to="/problems" onClick={closeNavbar}>All Problems</Link></li>
 
             {username && (
               <li className="nav-item">
-                <Link className="nav-link" to="/create" onClick={() => setShowForm(true)}>Create Problem ➕</Link>
+                <Link className="nav-link" to="/create" onClick={() => {setShowForm(true),closeNavbar()}} >Create Problem ➕</Link>
               </li>
             )}
 
 {username && (
               <>
-                <li className="nav-item"><Link className="nav-link" to="/my-problems">My problems</Link></li>
-                <li className="nav-item"><Link className="nav-link" to="/city-wise">{cityname} problems</Link></li>
+                <li className="nav-item"><Link className="nav-link" to="/my-problems" onClick={closeNavbar}>My problems</Link></li>
+                <li className="nav-item"><Link className="nav-link" to="/city-wise" onClick={closeNavbar}>{cityname} problems</Link></li>
                   
               </>
               
@@ -86,8 +86,8 @@ setCityname(decoded.city);
 
             {!username && (
               <>
-                <li className="nav-item"><Link className="nav-link" to="/signup">Sign Up</Link></li>
-                <li className="nav-item"><Link className="nav-link" to="/login">Sign In</Link></li>
+                <li className="nav-item"><Link className="nav-link" to="/signup" onClick={closeNavbar}>Sign Up</Link></li>
+                <li className="nav-item"><Link className="nav-link" to="/login" onClick={closeNavbar}>Sign In</Link></li>
               </>
             )}
           </ul>
@@ -103,7 +103,7 @@ setCityname(decoded.city);
   <button
     className="btn btn-primary me-3"
     type="button"
-    onClick={() => navigate('/problems')}  // 👈 navigate to filtering page
+    onClick={() =>   {closeNavbar(), navigate('/problems')}}  // 👈 navigate to filtering page
   >
     Search
   </button>
