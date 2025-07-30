@@ -179,7 +179,7 @@ useEffect(() => {
                 <option value="High">High</option>
               </select>
 
-              <input type="file" accept="image/*" capture="environment" onChange={handleImageUpload} />
+              <input type="file" accept="image/*"  onChange={handleImageUpload} />
             {isUploading ? (
   <p style={{ marginTop: "10px", color: "orange" }}>📤 Uploading Image... guyss just wait</p>
 ) : (
