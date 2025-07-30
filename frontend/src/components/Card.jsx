@@ -22,7 +22,7 @@ const Card = ({ problems, user, refreshProblems, onDelete}) => {
               return (
                 <div className="col-sm-12 col-md-6 col-lg-4 mb-4" key={problem._id || index}>
                   <SingleCard
-                    image={problem.Image || 'https://via.placeholder.com/300x200'}
+                    image={problem.Image || ''}
                     CardTitle={problem.ProblemTitle}
                     CardDescription={problem.ProblemDescription || 'No description available.'}
                     Cardcity={problem.City || 'No city'}

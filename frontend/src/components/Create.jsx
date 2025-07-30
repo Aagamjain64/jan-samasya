@@ -8,11 +8,11 @@ import '../assets/styls/SubmittedProblems.css';
 
 const CreateProblemForm = ({ showForm, setShowForm }) => {
   const BASE_URL = import.meta.env.VITE_API_URL;
-
+const [isUploading, setIsUploading] = useState(false);
 
   const [customCategory, setCustomCategory] = useState('');
   const [submittedProblems, setSubmittedProblems] = useState([]);
-  const [message, setMessage] = useState(''); // ✅ For alerts
+  const [message, setMessage] = useState('');
 
   const [formData, setFormData] = useState({
     ProblemTitle: '',
@@ -27,7 +27,7 @@ const CreateProblemForm = ({ showForm, setShowForm }) => {
     Image: ''
   });
 
-  // ✅ Extract userId and city/state/pincode from token
+  // Extract userId and city/state/pincode from token
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -47,93 +47,118 @@ const CreateProblemForm = ({ showForm, setShowForm }) => {
     }
   }, []);
 
-  // ✅ Fetch problems once
   useEffect(() => {
     const fetchProblems = async () => {
       try {
         const res = await axios.get(`${BASE_URL}/problems`);
         setSubmittedProblems(res.data);
       } catch (err) {
-        console.error('❌ Failed to fetch problems:', err);
+        console.error('Failed to fetch problems:', err);
       }
     };
     fetchProblems();
   }, []);
+const handleImageUpload = async (e) => {
+  console.log("📷 File input triggered");  // Check this shows
+  const file = e.target.files[0];
+  if (!file) {
+    console.log("❌ No file selected");
+    return;
+  }
+setIsUploading(true);
 
-  // ✅ Handle submit
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  console.log("🛠 Selected file:", file.name);
 
-    const finalCategory = formData.ProblemCategory === 'Other' ? customCategory : formData.ProblemCategory;
-    const token = localStorage.getItem("token");
+  const formDataImg = new FormData();
+  formDataImg.append("file", file);
+  formDataImg.append("upload_preset", "jan_samasya");
 
-    try {
-      const res = await axios.post(`${BASE_URL}/create`, {
-        ...formData,
-        ProblemCategory: finalCategory
-      }, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
-
-     setSubmittedProblems([...submittedProblems, res.data.problem]);
-
-      setMessage('✅ Problem submitted successfully!');
-
-      setFormData({
-        ProblemTitle: '',
-        ProblemDescription: '',
-        ProblemCategory: '',
-        State: '',
-        City: '',
-        Pincode: '',
-        Urgency: 'Medium',
-        isAnonymous: false,
-        PostedBy: formData.PostedBy,
-        Image: ''
-      });
-      setCustomCategory('');
-      setShowForm(false);
-    } catch (error) {
-      console.error('❌ Error submitting problem:', error.response?.data || error.message);
-      setMessage('❌ ' + (error.response?.data?.msg || error.message || 'Something went wrong'));
-    }
-  };
+  try {
+    const res = await axios.post("https://api.cloudinary.com/v1_1/drq4xcdco/image/upload", formDataImg);
+    const uploadedUrl = res.data.secure_url;
+    console.log("✅ Uploaded URL:", uploadedUrl);
+    console.log("📸 Image URL in state:", formData.Image);
+    setFormData(prev => ({
+      ...prev,
+      Image: uploadedUrl
+    }));
+  } catch (err) {
+    console.error("❌ Upload failed:", err.response?.data || err.message);
+  }finally {
+    setIsUploading(false); // 👉 hide loader
+  }
+};
 
 
+const handleSubmit = async (e) => {
+  e.preventDefault();
   
 
-  // ✅ Auto-hide message after 5 seconds
+  const finalCategory = formData.ProblemCategory === 'Other' ? customCategory : formData.ProblemCategory;
+  const token = localStorage.getItem("token");
+
+  try {
+    const res = await axios.post(`${BASE_URL}/create`, {
+      ...formData,
+      ProblemCategory: finalCategory
+    }, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    // ✅ Instead of pushing one manually, fetch all from backend again
+    const all = await axios.get(`${BASE_URL}/problems`);
+    setSubmittedProblems(all.data);
+
+    setMessage('✅ Problem submitted successfully!');
+    setFormData({
+      ProblemTitle: '',
+      ProblemDescription: '',
+      ProblemCategory: '',
+      State: '',
+      City: '',
+      Pincode: '',
+      Urgency: 'Medium',
+      isAnonymous: false,
+      PostedBy: formData.PostedBy,
+      Image: ''
+    });
+    setCustomCategory('');
+    setShowForm(false);
+  } catch (error) {
+    console.error('Error submitting problem:', error.response?.data || error.message);
+    setMessage('❌ ' + (error.response?.data?.msg || error.message || 'Something went wrong'));
+  }
+};
+
   useEffect(() => {
     if (message) {
       const timer = setTimeout(() => setMessage(''), 5000);
       return () => clearTimeout(timer);
     }
   }, [message]);
+useEffect(() => {
+  if (formData.Image) {
+    console.log("✅ Final Image URL in formData.Image:", formData.Image);
+  }
+}, [formData.Image]);
 
   return (
     <div>
-    
-
       <Card problems={submittedProblems} />
 
       {showForm && (
-        <div className="modal-overlay overflow-auto ">
+        <div className="modal-overlay overflow-auto">
           <div className="modal-box">
             <h2>Create a Problem</h2>
             <form onSubmit={handleSubmit}>
-              <input type="text" placeholder="Problem Title" value={formData.ProblemTitle}
-                onChange={(e) => setFormData({ ...formData, ProblemTitle: e.target.value })} required />
-
-              <textarea placeholder="Problem Description" value={formData.ProblemDescription}
-                onChange={(e) => setFormData({ ...formData, ProblemDescription: e.target.value })} required />
-
-              <select value={formData.ProblemCategory}
-                onChange={(e) => {
-                  setFormData({ ...formData, ProblemCategory: e.target.value });
-                  if (e.target.value !== 'Other') setCustomCategory('');
-                }} required >
+              <input type="text" placeholder="Problem Title" value={formData.ProblemTitle} onChange={(e) => setFormData({ ...formData, ProblemTitle: e.target.value })} required />
+              <textarea placeholder="Problem Description" value={formData.ProblemDescription} onChange={(e) => setFormData({ ...formData, ProblemDescription: e.target.value })} required />
+              <select value={formData.ProblemCategory} onChange={(e) => {
+                setFormData({ ...formData, ProblemCategory: e.target.value });
+                if (e.target.value !== 'Other') setCustomCategory('');
+              }} required>
                 <option value="">-- Select Category --</option>
                 <option value="Infrastructure">Infrastructure</option>
                 <option value="Water">Water</option>
@@ -142,46 +167,40 @@ const CreateProblemForm = ({ showForm, setShowForm }) => {
                 <option value="Sanitation">Sanitation</option>
                 <option value="Other">Other</option>
               </select>
-
               {formData.ProblemCategory === 'Other' && (
-                <input type="text" placeholder="Enter custom category" value={customCategory}
-                  onChange={(e) => setCustomCategory(e.target.value)} required />
+                <input type="text" placeholder="Enter custom category" value={customCategory} onChange={(e) => setCustomCategory(e.target.value)} required />
               )}
-
-              <input type="text" placeholder="State" value={formData.State}
-                onChange={(e) => setFormData({ ...formData, State: e.target.value })} />
-
-              <input type="text" placeholder="City" value={formData.City}
-                onChange={(e) => setFormData({ ...formData, City: e.target.value })} />
-
-              <input type="text" placeholder="Pincode" value={formData.Pincode}
-                onChange={(e) => setFormData({ ...formData, Pincode: e.target.value })} />
-
-              <select value={formData.Urgency}
-                onChange={(e) => setFormData({ ...formData, Urgency: e.target.value })} >
+              <input type="text" placeholder="State" value={formData.State} onChange={(e) => setFormData({ ...formData, State: e.target.value })} />
+              <input type="text" placeholder="City" value={formData.City} onChange={(e) => setFormData({ ...formData, City: e.target.value })} />
+              <input type="text" placeholder="Pincode" value={formData.Pincode} onChange={(e) => setFormData({ ...formData, Pincode: e.target.value })} />
+              <select value={formData.Urgency} onChange={(e) => setFormData({ ...formData, Urgency: e.target.value })}>
                 <option value="Low">Low</option>
                 <option value="Medium">Medium</option>
                 <option value="High">High</option>
               </select>
 
-              <input type="file" placeholder="Image URL" value={formData.Image}
-                onChange={(e) => setFormData({ ...formData, Image: e.target.value })} />
+              <input type="file" accept="image/*" capture="environment" onChange={handleImageUpload} />
+            {isUploading ? (
+  <p style={{ marginTop: "10px", color: "orange" }}>📤 Uploading Image... guyss just wait</p>
+) : (
+  formData.Image && (
+    <img
+      src={formData.Image}
+      alt="Preview"
+      style={{ width: "50px", marginTop: "10px", borderRadius: "10px" }}
+    />
+  )
+)}
 
-              {formData.Image && <img src={formData.Image} alt="Preview" style={{ width: "50px", marginTop: "10px", borderRadius: "10px" }} />}
+
 
               <label className="checkbox-label">
-                <input type="checkbox" checked={formData.isAnonymous}
-                  onChange={(e) => setFormData({ ...formData, isAnonymous: e.target.checked })} />
+                <input type="checkbox" checked={formData.isAnonymous} onChange={(e) => setFormData({ ...formData, isAnonymous: e.target.checked })} />
                 Post Anonymously
               </label>
 
-              {/* ✅ Message show block */}
               {message && (
-                <div
-                  className={`alert ${message.startsWith("✅") ? "alert-success" : "alert-danger"}`}
-                  role="alert"
-                  style={{ marginTop: '10px' }}
-                >
+                <div className={`alert ${message.startsWith("✅") ? "alert-success" : "alert-danger"}`} role="alert" style={{ marginTop: '10px' }}>
                   {message}
                 </div>
               )}
@@ -194,6 +213,7 @@ const CreateProblemForm = ({ showForm, setShowForm }) => {
           </div>
         </div>
       )}
+      
     </div>
   );
 };

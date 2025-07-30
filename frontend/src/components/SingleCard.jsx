@@ -121,13 +121,19 @@ const SingleCard = ({
     <div className="card h-100 shadow-sm">
 
           <p className="fs-5 text-primary fw-bold">User: {postedByUsername}</p>
+{console.log("ck",image)}
 
       <img
-        src={image}
-        className="card-img-top"
-        alt="Problem"
-        style={{ height: "200px", objectFit: "cover" }}
-      />
+  src={image || "https://dummyimage.com/300x200/cccccc/000000&text=No+Image"}
+  alt="Problem"
+  onError={(e) => {
+    e.target.src = "https://dummyimage.com/300x200/cccccc/000000&text=No+Image";
+    console.error("🚫 Failed to load image:", image);
+  }}
+  className="card-img-top"
+  style={{ height: "200px", objectFit: "cover" }}
+/>
+  
       <div className="card-body text-center">
         <h5 className="card-title text-dark">{CardTitle}</h5>
         <p className="card-text text-muted">{CardDescription}</p>
