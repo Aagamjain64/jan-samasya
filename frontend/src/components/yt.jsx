@@ -3,8 +3,22 @@ import { Link } from 'react-router-dom';
 import '../assets/styls/yt.css';
 import logo from '../assets/react.svg'; // Use your logo if available
 import { FaPlus } from 'react-icons/fa';
-
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 function Yt() {
+  const navigate = useNavigate();
+
+const handleSubmitClick = () => {
+  const token = localStorage.getItem("token"); // 🔑 adjust if you use different key
+
+  if (!token) {
+alert("Please login first to submit a problem!");// 🔔 Or use toast
+    return;
+  }
+
+  navigate("/create"); // ✅ Only navigate if logged in
+};
+
   return (
     <div className="yt-home-wrapper">
       {/* Left side: YouTube video */}
@@ -27,9 +41,10 @@ function Yt() {
 
         <p className="yt-home-tagline">Empowering communities, one problem at a time.</p>
         <p>Raise public issues and support your community by voting on problems that matter to you.</p>
-        <Link to="/create" className="yt-home-btn">
-          <FaPlus className="yt-home-btn-icon" /> Submit a Problem
-        </Link>
+       <button onClick={handleSubmitClick} className="yt-home-btn">
+  <FaPlus className="yt-home-btn-icon" /> Submit a Problem
+</button>
+
       </div>
     </div>
   );
