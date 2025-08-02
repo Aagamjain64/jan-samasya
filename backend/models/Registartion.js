@@ -11,6 +11,7 @@ const registrationSchema = new Schema({
   number:{
     type:String,
     required:false,
+    unique:true
    
   },
   firstname:{

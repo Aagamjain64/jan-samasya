@@ -42,7 +42,7 @@ router.post("/create", verifyUser, async (req, res) => {
 // ✅ GET all problems
 router.get('/problems', async (req, res) => {
   try {
-    const problems = await Problem.find().populate('PostedBy', 'username');
+    const problems = await Problem.find().populate('PostedBy', 'username isAnonymous');
     res.json(problems);
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch problems' });
