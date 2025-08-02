@@ -17,7 +17,7 @@ import MyProblems from './components/Myproblem';
 import Footer from './components/footer';
 import EditProblemForm from './components/EditProblemForm';
 import CityWise from './components/CityWise';
-
+import ContactUs from './components/Contact';
 
 function App() {
 const [searchTerm, setSearchTerm] = useState("");
@@ -31,7 +31,8 @@ const [showForm, setShowForm] = useState(false); //
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/Aboutus" element={<Aboutus />} />
-    
+        <Route path="/contact" element={<ContactUs />} />
+
         <Route path="/create" element={<CreateProblemForm  showForm={showForm} setShowForm={setShowForm}/>} />
   <Route path="/problems" element={<AllProblems searchTerm={searchTerm} />} />
   <Route path="/" element={<Front />} />

@@ -13,6 +13,7 @@ const SingleCard = ({
   problemId,
   problemPostedBy,
       postedByUsername,
+      postedByisAnonymous,
   isVotingEnabled,
   user,
   refreshProblems,
@@ -120,8 +121,9 @@ const SingleCard = ({
   return (
     <div className="card h-100 shadow-sm">
 
-          <p className="fs-5 text-primary fw-bold">User: {postedByUsername}</p>
-{console.log("ck",image)}
+
+
+
 
       <img
   src={image || "https://dummyimage.com/300x200/cccccc/000000&text=No+Image"}

@@ -6,6 +6,7 @@ import '../assets/styls/Card.css'
 const Card = ({ problems, user, refreshProblems, onDelete}) => {
  useEffect(() => {
   console.log("🧑‍💻 Card.jsx received user:", user);
+  
 }, [user]);
 
   return (
@@ -20,7 +21,10 @@ const Card = ({ problems, user, refreshProblems, onDelete}) => {
             problems.map((problem, index) => {
               const postedBy = problem.PostedBy?._id || problem.PostedBy;
               return (
+
                 <div className="col-sm-12 col-md-6 col-lg-4 mb-4" key={problem._id || index}>
+               { console.log("PostedBy check:", problem.PostedBy)}
+
                   <SingleCard
                     image={problem.Image || ''}
                     CardTitle={problem.ProblemTitle}
@@ -30,6 +34,8 @@ const Card = ({ problems, user, refreshProblems, onDelete}) => {
                     problemId={problem._id}
                     problemPostedBy={postedBy}
                       postedByUsername={problem.PostedBy?.username}  
+                    postedByisAnonymous={problem.PostedBy?.isAnonymous}
+
                     isVotingEnabled={problem.isVotingEnabled}
                     user={user}
                     refreshProblems={refreshProblems}

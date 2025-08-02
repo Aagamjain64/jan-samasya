@@ -187,17 +187,14 @@ useEffect(() => {
     <img
       src={formData.Image}
       alt="Preview"
-      style={{ width: "50px", marginTop: "10px", borderRadius: "10px" }}
+      style={{ width: "100px", marginTop: "10px", borderRadius: "10px" }}
     />
   )
 )}
 
 
 
-              <label className="checkbox-label">
-                <input type="checkbox" checked={formData.isAnonymous} onChange={(e) => setFormData({ ...formData, isAnonymous: e.target.checked })} />
-                Post Anonymously
-              </label>
+            
 
               {message && (
                 <div className={`alert ${message.startsWith("✅") ? "alert-success" : "alert-danger"}`} role="alert" style={{ marginTop: '10px' }}>
@@ -206,7 +203,14 @@ useEffect(() => {
               )}
 
               <div className="modal-buttons">
-                <button type="submit" className="submit-btn">Submit</button>
+               <button
+  type="submit"
+  className="submit-btn"
+  disabled={isUploading}
+>
+  {isUploading ? "Uploading..." : "Submit"}
+</button>
+
                 <button type="button" className="cancel-btn" onClick={() => setShowForm(false)}>Cancel</button>
               </div>
             </form>

@@ -14,8 +14,8 @@ function Footer() {
         </div>
         <nav className="footer-nav">
           <Link to="/home" className="footer-link">Home</Link>
-          <Link to="/about" className="footer-link">About</Link>
-          <Link to="/create" className="footer-link">Submit</Link>
+          <Link to="/aboutus" className="footer-link">About</Link>
+          <Link to="/problems" className="footer-link">Submit</Link>
         </nav>
         <div className="footer-social">
           <a href="https://github.com/" target="_blank" rel="noopener noreferrer" className="footer-social-icon"><FaGithub /></a>
