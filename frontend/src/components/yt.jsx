@@ -26,7 +26,7 @@ alert("Please login first to submit a problem!");// 🔔 Or use toast
         <iframe
           width="100%"
           height="100%"
-          src="https://youtu.be/WDpuAm_KmxU?feature=shared"
+          src="https://www.youtube.com/embed/WDpuAm_KmxU"
           title="YouTube video"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
