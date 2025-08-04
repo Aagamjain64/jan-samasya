@@ -34,7 +34,7 @@ function Login() {
         localStorage.setItem("token", res.data.token);
         // Always redirect to create page after login
         setTimeout(() => {
-          navigate("/create");
+          navigate("/problems");
         }, 500);
       } else {
         // No token, fallback
