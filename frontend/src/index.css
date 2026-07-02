@@ -1,0 +1,29 @@
+
+
+body, html {
+  margin: 0;
+  padding: 0;
+}
+.custom-center {
+  margin-left: 300px;
+}
+.app-bg {
+  min-height: 100vh;
+  width: 100vw;
+  background: linear-gradient(125deg, #ecfdf5 0%, #f0fdfa 35%, #e0f2fe 70%, #f8fafc 100%);
+  background-size: 200% 200%;
+  animation: gradientMove 10s ease-in-out infinite;
+  transition: background 0.5s;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

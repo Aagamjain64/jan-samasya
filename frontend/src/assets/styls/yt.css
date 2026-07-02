@@ -1,0 +1,138 @@
+/* Modern styles for Yt component */
+.yt-home-wrapper {
+  display: flex;
+  min-height: 80vh;
+  background: linear-gradient(120deg, #f8fafc 0%, #e0e7ff 100%);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(60, 60, 120, 0.12);
+  overflow: hidden;
+  margin: 40px auto;
+  max-width: 1000px;
+}
+
+.yt-home-video {
+  flex: 1.2;
+  min-width: 320px;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.yt-home-video iframe {
+  border-radius: 0 0 0 24px;
+  min-height: 320px;
+  max-width: 100%;
+  aspect-ratio: 16/9;
+}
+
+.yt-home-content {
+  flex: 1;
+  padding: 48px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.95);
+}
+
+.yt-home-logo {
+  width: 64px;
+  margin-bottom: 16px;
+  filter: drop-shadow(0 2px 8px rgba(60,60,120,0.10));
+}
+
+.yt-home-content h1 {
+  font-size: clamp(1.35rem, 3vw, 2.1rem);
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #0f172a;
+  text-align: center;
+  line-height: 1.25;
+}
+
+.yt-presenter-name {
+  color: #0f766e;
+  font-weight: 800;
+}
+.yt-home-tagline {
+  font-size: 1.1rem;
+  color: #0f766e;
+  margin-bottom: 12px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.yt-home-body {
+  font-size: 1.05rem;
+  color: #475569;
+  margin-bottom: 20px;
+  text-align: center;
+  line-height: 1.55;
+}
+
+.yt-home-footnote {
+  font-size: 0.9rem;
+  color: #64748b;
+  margin: 16px 0 0;
+  text-align: center;
+}
+
+.yt-home-inline-link {
+  color: #4f46e5;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.yt-home-inline-link:hover {
+  text-decoration: underline;
+}
+
+.yt-home-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(90deg, #14b8a6 0%, #0d9488 100%);
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 14px 32px;
+  border: none;
+  border-radius: 32px;
+  box-shadow: 0 4px 16px rgba(13, 148, 136, 0.25);
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s, background 0.2s;
+  text-decoration: none;
+  outline: none;
+  margin-top: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.yt-home-btn:hover, .yt-home-btn:focus {
+  background: linear-gradient(90deg, #0d9488 0%, #0f766e 100%);
+  transform: scale(1.03);
+  box-shadow: 0 8px 24px rgba(13, 148, 136, 0.3);
+}
+
+.yt-home-btn:active {
+  transform: scale(0.98);
+}
+
+.yt-home-btn-icon {
+  font-size: 1.2em;
+}
+
+@media (max-width: 800px) {
+  .yt-home-wrapper {
+    flex-direction: column;
+    max-width: 98vw;
+    margin: 16px auto;
+  }
+  .yt-home-video iframe {
+    border-radius: 24px 24px 0 0;
+  }
+  .yt-home-content {
+    padding: 32px 12px;
+  }
+} 

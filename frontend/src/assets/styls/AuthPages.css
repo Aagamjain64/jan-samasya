@@ -1,0 +1,222 @@
+/* Sign in / Sign up — matches Landing teal civic theme */
+
+.auth-page {
+  min-height: 100vh;
+  padding: 5.5rem 1.25rem 2.5rem;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-shell {
+  width: 100%;
+  max-width: 960px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.12);
+  background: #fff;
+}
+
+@media (min-width: 768px) {
+  .auth-shell {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    min-height: 420px;
+  }
+}
+
+.auth-aside {
+  background: linear-gradient(145deg, #0f172a 0%, #134e4a 48%, #0f766e 100%);
+  color: #f8fafc;
+  padding: 2.25rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.75rem;
+  position: relative;
+}
+
+.auth-aside::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+.auth-aside > * {
+  position: relative;
+  z-index: 1;
+}
+
+.auth-brand {
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.auth-aside-tagline {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: rgba(248, 250, 252, 0.88);
+  max-width: 22rem;
+}
+
+.auth-aside-link {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #5eead4;
+  text-decoration: none;
+  align-self: flex-start;
+}
+
+.auth-aside-link:hover {
+  color: #99f6e4;
+  text-decoration: underline;
+}
+
+.auth-body {
+  padding: 2rem 1.75rem 2.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.auth-heading {
+  margin: 0 0 0.35rem;
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+}
+
+.auth-subtitle {
+  margin: 0 0 1.5rem;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: #64748b;
+}
+
+.auth-form .form-label {
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: #334155;
+  margin-bottom: 0.35rem;
+}
+
+.auth-form .form-control {
+  border-radius: 0.65rem;
+  border-color: #cbd5e1;
+  padding: 0.6rem 0.85rem;
+}
+
+.auth-form .form-control:focus {
+  border-color: #0d9488;
+  box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.2);
+}
+
+.auth-submit {
+  margin-top: 0.25rem;
+  border: none;
+  border-radius: 999px;
+  padding: 0.7rem 1.25rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  background: linear-gradient(90deg, #14b8a6 0%, #0d9488 100%);
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(13, 148, 136, 0.3);
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.auth-submit:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 28px rgba(13, 148, 136, 0.35);
+}
+
+.auth-submit:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+}
+
+.auth-alert {
+  border-radius: 0.65rem;
+  font-size: 0.9rem;
+}
+
+.auth-footer {
+  margin-top: 1.35rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+.auth-footer a {
+  color: #0f766e;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.auth-footer a:hover {
+  text-decoration: underline;
+}
+
+.role-card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.65rem;
+}
+
+@media (min-width: 576px) {
+  .role-card-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.role-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+  text-align: left;
+  border: 2px solid #e2e8f0;
+  border-radius: 0.85rem;
+  padding: 0.85rem;
+  background: #fff;
+  cursor: pointer;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.role-card:hover {
+  border-color: #99f6e4;
+  box-shadow: 0 6px 18px rgba(13, 148, 136, 0.12);
+}
+
+.role-card--active {
+  border-color: #0d9488;
+  background: linear-gradient(180deg, #f0fdfa 0%, #fff 100%);
+  box-shadow: 0 8px 22px rgba(13, 148, 136, 0.18);
+  transform: translateY(-1px);
+}
+
+.role-card-icon {
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.role-card-title {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.role-card-desc {
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: #64748b;
+}

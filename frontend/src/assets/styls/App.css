@@ -1,0 +1,29 @@
+body, html {
+  margin: 0;
+  padding: 0;
+}
+.d-flex{
+  margin-left: 100px;
+}
+.app-bg {
+  min-height: 100vh;
+  width: 100vw;
+  /* Animated gradient background */
+  background: linear-gradient(120deg, #f7f8f8 0%, #acbb78 40%, #b7e5ac 70%, #e0e7ff 100%);
+  background-size: 200% 200%;
+  animation: gradientMove 8s ease-in-out infinite;
+  /* Optional: for smoothness */
+  transition: background 0.5s;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
